@@ -38,7 +38,10 @@ Para facilitar o aprendizado, organizamos a documentação por categoria:
 | 🔑 [**Credenciais**](./docs/CREDENCIAIS.md) | Como obter seu Access Token do Mercado Pago. |
 | ⚡ [**Guia Pix**](./docs/PIX.md) | Como gerar e aceitar pagamentos via Pix. |
 | 📄 [**Guia Boleto**](./docs/BOLETO.md) | Como emitir boletos bancários profissionais. |
-| 🔔 [**Webhooks**](./docs/WEBHOOKS.md) | Como receber notificações de pagamento automático. |
+| 💰 [**Estornos**](./docs/ESTORNOS.md) | Como realizar devoluções totais ou parciais. |
+| 🧾 [**Extrato**](./docs/EXTRATO.md) | Consultas avançadas e auditoria de pagamentos. |
+| 🔄 [**Automação (Polling)**](./docs/POLLING.md) | Como automatizar sem precisar de um servidor. |
+| 🔔 [**Webhooks**](./docs/WEBHOOKS.md) | Recebendo notificações automáticas (Servidor). |
 
 ---
 

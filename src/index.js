@@ -14,6 +14,7 @@ export class VincentMP {
       throw new Error('Erro: Token não encontrado. Adicione MP_ACCESS_TOKEN no seu arquivo .env');
     }
     this.baseUrl = 'https://api.mercadopago.com/v1';
+    this.authHeader = { Authorization: `Bearer ${this.token}` };
   }
 
   /**
@@ -122,7 +123,53 @@ export class VincentMP {
       statusDetalhe: res.dados.status_detail,
       metodo: res.dados.payment_method_id,
       valor: res.dados.transaction_amount,
+      valorPago: res.dados.transaction_details?.total_paid_amount || 0,
       dataCriacao: res.dados.date_created,
+      detalhes: res.dados
+    };
+  }
+
+  /**
+   * Realiza o estorno (refund) de um pagamento aprovado.
+   * @param {string|number} id - ID do pagamento.
+   * @param {number} [valor] - Valor parcial. Se omitido, estorna o valor total.
+   */
+  async estornarPagamento(id, valor) {
+    const corpo = valor ? { amount: parseFloat(valor) } : {};
+    const res = await requisicao(`${this.baseUrl}/payments/${id}/refunds`, {
+      method: 'POST',
+      headers: this.authHeader,
+      body: corpo
+    });
+
+    if (!res.ok) return res;
+
+    return {
+      ok: true,
+      idEstorno: res.dados.id,
+      valorEstornado: res.dados.amount,
+      status: res.dados.status,
+      detalhes: res.dados
+    };
+  }
+
+  /**
+   * Pesquisa pagamentos (Extrato).
+   * @param {Object} filtros - Filtros da consulta (ex: status, range de datas).
+   * @see https://www.mercadopago.com.br/developers/pt/reference/payments/_payments_search/get
+   */
+  async buscarPagamentos(filtros = {}) {
+    const query = new URLSearchParams(filtros).toString();
+    const res = await requisicao(`${this.baseUrl}/payments/search?${query}`, {
+      headers: this.authHeader
+    });
+
+    if (!res.ok) return res;
+
+    return {
+      ok: true,
+      total: res.dados.paging.total,
+      resultados: res.dados.results,
       detalhes: res.dados
     };
   }
