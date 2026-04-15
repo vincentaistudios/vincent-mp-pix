@@ -6,11 +6,13 @@ import { requisicao } from './api.js';
  */
 export class VincentMP {
   /**
-   * @param {string} accessToken - Seu Access Token do Mercado Pago (iniciando com APP_USR)
+   * @param {string} [accessToken] - Opcional se estiver no .env como MP_ACCESS_TOKEN
    */
   constructor(accessToken) {
-    if (!accessToken) throw new Error('O Access Token é obrigatório.');
-    this.token = accessToken;
+    this.token = accessToken || process.env.MP_ACCESS_TOKEN;
+    if (!this.token) {
+      throw new Error('Erro: Token não encontrado. Adicione MP_ACCESS_TOKEN no seu arquivo .env');
+    }
     this.baseUrl = 'https://api.mercadopago.com/v1';
   }
 

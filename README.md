@@ -60,7 +60,8 @@ MP_ACCESS_TOKEN=APP_USR-SEU-TOKEN-AQUI
 ```javascript
 import { VincentMP } from 'vincent-mp-pix';
 
-const mp = new VincentMP('SEU_ACCESS_TOKEN');
+// O sistema buscará o token automaticamente no seu arquivo .env
+const mp = new VincentMP();
 
 // Consultar um pagamento
 const status = await mp.consultarPagamento('1234567890');
