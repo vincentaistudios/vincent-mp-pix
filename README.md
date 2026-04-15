@@ -66,9 +66,19 @@ import { VincentMP } from 'vincent-mp-pix';
 // O sistema buscará o token automaticamente no seu arquivo .env
 const mp = new VincentMP();
 
-// Consultar um pagamento
-const status = await mp.consultarPagamento('1234567890');
-console.log(`Status: ${status.status}`);
+// Exemplo Pix
+if (res.ok) {
+  console.log('ID do Pagamento:', res.id);
+  console.log('Link do Comprovante:', res.ticketUrl);
+  console.log('Copia e Cola:', res.pix.copiaCola);
+}
+
+// Exemplo Boleto
+if (res.ok) {
+  console.log('ID do Pagamento:', res.id);
+  console.log('URL do Boleto:', res.ticketUrl);
+  console.log('Código de Barras:', res.boleto.codigoBarras);
+}
 ```
 
 ---

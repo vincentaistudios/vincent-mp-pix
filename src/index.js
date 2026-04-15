@@ -55,6 +55,7 @@ export class VincentMP {
       ok: true,
       id: res.dados.id,
       status: res.dados.status,
+      ticketUrl: res.dados.point_of_interaction.transaction_data.ticket_url,
       pix: {
         copiaCola: res.dados.point_of_interaction.transaction_data.qr_code,
         qrCodeBase64: res.dados.point_of_interaction.transaction_data.qr_code_base64
@@ -97,6 +98,7 @@ export class VincentMP {
       ok: true,
       id: res.dados.id,
       status: res.dados.status,
+      ticketUrl: res.dados.transaction_details.external_resource_url || res.dados.point_of_interaction.transaction_data.ticket_url,
       boleto: {
         url: res.dados.transaction_details.external_resource_url,
         codigoBarras: res.dados.barcode.content
