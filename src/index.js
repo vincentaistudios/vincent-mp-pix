@@ -175,4 +175,56 @@ export class VincentMP {
       detalhes: res.dados
     };
   }
+
+  /**
+   * Gera um relatório consolidado de transações para um usuário específico.
+   * @param {string} email - E-mail do pagador.
+   */
+  async gerarRelatorioUsuario(email) {
+    const res = await this.buscarPagamentos({ 'payer.email': email, sort: 'date_created', criteria: 'desc' });
+
+    if (!res.ok) return res;
+
+    const relatorio = {
+      email,
+      totalTransacoes: res.total,
+      consolidado: {
+        valorSolicitado: 0,
+        valorPago: 0,
+        valorEstornado: 0,
+        taxasMercadoPago: 0,
+        lucroLiquido: 0
+      },
+      historico: []
+    };
+
+    res.resultados.forEach(pag => {
+      const solicitado = pag.transaction_amount || 0;
+      const pago = pag.transaction_details?.total_paid_amount || 0;
+      const estornado = pag.refunds?.reduce((acc, r) => acc + r.amount, 0) || 0;
+      const taxas = pag.fee_details?.reduce((acc, f) => acc + f.amount, 0) || 0;
+
+      relatorio.consolidado.valorSolicitado += solicitado;
+      relatorio.consolidado.valorPago += pago;
+      relatorio.consolidado.valorEstornado += estornado;
+      relatorio.consolidado.taxasMercadoPago += taxas;
+
+      relatorio.historico.push({
+        id: pag.id,
+        data: pag.date_created,
+        status: pag.status,
+        valorSolicitado: solicitado,
+        valorPago: pago,
+        valorEstornado: estornado,
+        taxas: taxas
+      });
+    });
+
+    relatorio.consolidado.lucroLiquido = relatorio.consolidado.valorPago - relatorio.consolidado.taxasMercadoPago - relatorio.consolidado.valorEstornado;
+
+    return {
+      ok: true,
+      ...relatorio
+    };
+  }
 }

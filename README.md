@@ -40,6 +40,7 @@ Para facilitar o aprendizado, organizamos a documentação por categoria:
 | 📄 [**Guia Boleto**](./docs/BOLETO.md) | Como emitir boletos bancários profissionais. |
 | 💰 [**Estornos**](./docs/ESTORNOS.md) | Como realizar devoluções totais ou parciais. |
 | 🧾 [**Extrato**](./docs/EXTRATO.md) | Consultas avançadas e auditoria de pagamentos. |
+| 📊 [**Relatórios**](./docs/RELATORIOS.md) | Inteligência de dados e auditoria de taxas. |
 | 🔄 [**Automação (Polling)**](./docs/POLLING.md) | Como automatizar sem precisar de um servidor. |
 | 🔔 [**Webhooks**](./docs/WEBHOOKS.md) | Recebendo notificações automáticas (Servidor). |
 

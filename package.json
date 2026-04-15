@@ -15,5 +15,8 @@
     "vincent-ai"
   ],
   "author": "Vincent AI Studios",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "dotenv": "^17.4.2"
+  }
 }
