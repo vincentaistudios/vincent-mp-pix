@@ -1,0 +1,19 @@
+{
+  "name": "vincent-mp-pix",
+  "version": "1.0.0",
+  "description": "Biblioteca leve e profissional para integração com Mercado Pago (Pix e Boleto) - Vincent AI Studios",
+  "main": "src/index.js",
+  "type": "module",
+  "scripts": {
+    "test": "node area_de_testes/testes_pagamento.js"
+  },
+  "keywords": [
+    "mercado-pago",
+    "pix",
+    "boleto",
+    "api",
+    "vincent-ai"
+  ],
+  "author": "Vincent AI Studios",
+  "license": "MIT"
+}
