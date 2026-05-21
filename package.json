@@ -1,0 +1,21 @@
+{
+  "name": "vincent-mp-pix",
+  "version": "1.0.0",
+  "description": "Gateway de pagamentos via Pix do Mercado Pago — Vincent AI Studios",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "keywords": ["pix", "mercadopago", "gateway", "pagamentos", "node", "express"],
+  "author": "Vincent AI Studios <vincentaistudios@github.com>",
+  "license": "MIT",
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "mercadopago": "^1.5.17"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.4"
+  }
+}
